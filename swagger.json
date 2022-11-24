@@ -1,0 +1,256 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Yet Another Node.js Blogg Application API",
+    "description": "Yet Another Node.js Blogg Application API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "api-connect-uat.excellonconnect.com",
+  "basePath": "/v1.0",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users in the system"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/dataaction/{BookingSchema}/GetBooking": {
+      "post": {
+        "tags": [
+          "Booking"
+        ],
+        "description": "Get Booking Details",
+        "parameters": [
+          {
+            "type": "apiKey",
+            "name": "X-Api-Key",
+            "in": "header"
+          },
+          {
+            "type": "apiKey",
+            "name": "X-App-Id",
+            "in": "header"
+          },
+          {
+            "type": "apiKey",
+            "name": "Subscription",
+            "in": "header"
+          },
+          {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "BookingId",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Booking"
+            }
+          },
+          {
+            "type": "string",
+            "name": "BookingSchema",
+            "in": "path",
+            "schema": {
+              "$ref": "#/definitions/Schemas"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Booking Details"
+          }
+        }
+      }
+    },
+    "/dataaction/{SchemaId}/GetEnquiryDetails": {
+      "post": {
+        "tags": [
+          "Booking"
+        ],
+        "description": "Get Enquiry Details",
+        "parameters": [
+          {
+            "type": "apiKey",
+            "name": "X-Api-Key",
+            "in": "header"
+          },
+          {
+            "type": "apiKey",
+            "name": "X-App-Id",
+            "in": "header"
+          },
+          {
+            "type": "apiKey",
+            "name": "Subscription",
+            "in": "header"
+          },
+          {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "EnquiryId",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Enquiry"
+            }
+          },
+          {
+            "type": "string",
+            "name": "SchemaId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/definitions/Schemas"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Booking Details"
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "parameters": [
+        {
+          "name": "userId",
+          "in": "path",
+          "required": true,
+          "description": "ID of user that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user with given ID",
+        "responses": {
+          "200": {
+            "description": "User is found",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete user with given ID",
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "200": {
+            "description": "User is deleted",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update user with give ID",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is updated",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Schemas": {
+      "BookingSchema": "144f66f8-99f3-4573-93b9-34c130f68af7",
+      "LSQLeadSchema": "b11d4f5d-a0d2-47f9-b463-30afbf338040"
+    },
+    "User": {
+      "required": [
+        "email",
+        "_id"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        }
+      }
+    },
+    "Booking": {
+      "required": [
+        "BookingId"
+      ],
+      "properties": {
+        "BookingId": {
+          "type": "string",
+          "uniqueItems": true
+        }
+      }
+    },
+    "Enquiry": {
+      "required": [
+        "EnquiryId"
+      ],
+      "properties": {
+        "EnquiryId": {
+          "type": "string",
+          "uniqueItems": true
+        }
+      }
+    },
+    "Users": {
+      "type": "array",
+      "$ref": "#/definitions/User"
+    }
+  }
+}
