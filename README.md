@@ -18,3 +18,5 @@ Api documentation can be found on: `http://localhost:3000/api-docs`
 ## License
 
 swagger-to-existing-nodejs-project is released under [MIT License](https://opensource.org/licenses/MIT).
+
+![Screenshot](1.png?raw=true "Swagger")
